@@ -2,4 +2,43 @@
   (:use midje.sweet)
   (:require [asciidoclj.core :as asciidoc]))
 
-(fact (asciidoc/render "*This* is it.") => "<strong>This</strong> is it")
+
+(fact (asciidoc/render "*This* is it.") => "<div class=\"paragraph\">\n<p><strong>This</strong> is it.</p>\n</div>")
+
+(def sample-doc (asciidoc/parse "= Sample Document
+Doc Writer <doc.writer@asciidoc.org>; John Smith <john.smith@asciidoc.org>
+v1.0, 2013-05-20: First draft
+
+== Section one
+This is content of section one
+
+== Section two
+And content of section two"))
+
+(facts "parse returns StructuredDocument map with header"
+       (fact "with document and page titles"
+             (:document-title (:header sample-doc)) => "Sample Document"
+             (:page-title (:header sample-doc)) => nil)
+
+       (fact "with main author"
+             (:author (:header sample-doc)) => {:full-name "Doc Writer"
+                                                :last-name "Writer"
+                                                :first-name "Doc"
+                                                :middle-name nil
+                                                :email "doc.writer@asciidoc.org"
+                                                :initials "DW"})
+
+       (fact "with all authors"
+             (count (:authors (:header sample-doc))) => 2)
+
+       (fact "with main author as first author"
+             (:full-name (head (:authors (:header sample-doc)))) => "Doc Writer")
+
+       (fact "with author as second author"
+             (:full-name (tail (:authors (:header sample-doc)))) => "John Smith"))
+
+(facts "parse returns StructuredDocument map with parts")
+
+(facts "parse returns StructuredDocument map with revision info")
+
+(facts "parse document without author")
