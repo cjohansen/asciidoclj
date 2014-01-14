@@ -20,9 +20,20 @@
    :authors (map map-author (.getAuthors header))
    :revision-info (map-revision-info (.getRevisionInfo header))})
 
+(defn- map-content-part [part]
+  {:id (.getId part)
+   :level (.getLevel part)
+   :context (.getContext part)
+   :style (.getStyle part)
+   :role (.getRole part)
+   :title (.getTitle part)
+   :attributes (.getAttributes part)
+   :content (.getContent part)
+   :parts (map map-content-part (.getParts part))})
+
 (defn- map-structured-document [document]
   {:header (map-document-header (.getHeader document))
-   :parts (.getParts document)})
+   :parts (map map-content-part (.getParts document))})
 
 (defn render [str]
   (let [doctor (org.asciidoctor.Asciidoctor$Factory/create)]

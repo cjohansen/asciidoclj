@@ -42,6 +42,19 @@ And content of section two"))
                                                        :number "1.0"
                                                        :remark "First draft"}))
 
-(facts "parse returns StructuredDocument map with parts")
+(facts "parse returns StructuredDocument map with parts"
+       (fact "includes all parts"
+             (count (:parts sample-doc)) => 2)
+
+       (fact "parts have details"
+             (first (:parts sample-doc)) => {:id "_section_one"
+                                             :level 1
+                                             :context "section"
+                                             :style nil
+                                             :role nil
+                                             :title "Section one"
+                                             :attributes {}
+                                             :content "<div class=\"paragraph\">\n<p>This is content of section one</p>\n</div>"
+                                             :parts []}))
 
 (facts "parse document without author")
