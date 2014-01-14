@@ -37,8 +37,11 @@ And content of section two"))
        (fact "with author as second author"
              (:full-name (nth (:authors (:header sample-doc)) 1)) => "John Smith"))
 
-(facts "parse returns StructuredDocument map with parts")
+(facts "parse returns StructuredDocument map with revision info"
+       (fact (:revision-info (:header sample-doc)) => {:date "2013-05-20"
+                                                       :number "1.0"
+                                                       :remark "First draft"}))
 
-(facts "parse returns StructuredDocument map with revision info")
+(facts "parse returns StructuredDocument map with parts")
 
 (facts "parse document without author")

@@ -8,12 +8,17 @@
    :email (.getEmail author)
    :initials (.getInitials author)})
 
+(defn- map-revision-info [revision-info]
+  {:date (.getDate revision-info)
+   :number (.getNumber revision-info)
+   :remark (.getRemark revision-info)})
+
 (defn- map-document-header [header]
   {:document-title (.getDocumentTitle header)
    :page-title (.getPageTitle header)
    :author (map-author (.getAuthor header))
    :authors (map map-author (.getAuthors header))
-   :revision-info (.getRevisionInfo header)})
+   :revision-info (map-revision-info (.getRevisionInfo header))})
 
 (defn- map-structured-document [document]
   {:header (map-document-header (.getHeader document))
