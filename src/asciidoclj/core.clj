@@ -12,7 +12,7 @@
   {:document-title (.getDocumentTitle header)
    :page-title (.getPageTitle header)
    :author (map-author (.getAuthor header))
-   :authors (.getAuthors header)
+   :authors (map map-author (.getAuthors header))
    :revision-info (.getRevisionInfo header)})
 
 (defn- map-structured-document [document]

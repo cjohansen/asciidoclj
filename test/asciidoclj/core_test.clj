@@ -32,10 +32,10 @@ And content of section two"))
              (count (:authors (:header sample-doc))) => 2)
 
        (fact "with main author as first author"
-             (:full-name (head (:authors (:header sample-doc)))) => "Doc Writer")
+             (:full-name (first (:authors (:header sample-doc)))) => "Doc Writer")
 
        (fact "with author as second author"
-             (:full-name (tail (:authors (:header sample-doc)))) => "John Smith"))
+             (:full-name (nth (:authors (:header sample-doc)) 1)) => "John Smith"))
 
 (facts "parse returns StructuredDocument map with parts")
 
