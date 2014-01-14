@@ -9,6 +9,8 @@
 Doc Writer <doc.writer@asciidoc.org>; John Smith <john.smith@asciidoc.org>
 v1.0, 2013-05-20: First draft
 
+:custom-attr: Custom value
+
 == Section one
 This is content of section one
 
@@ -27,6 +29,9 @@ And content of section two"))
                                                 :middle-name nil
                                                 :email "doc.writer@asciidoc.org"
                                                 :initials "DW"})
+
+       (fact "with custom attributes"
+             (-> sample-doc :header :attributes :custom-attr) => "Custom value")
 
        (fact "with all authors"
              (count (:authors (:header sample-doc))) => 2)
@@ -53,7 +58,6 @@ And content of section two"))
                                              :style nil
                                              :role nil
                                              :title "Section one"
-                                             :attributes {}
                                              :content "<div class=\"paragraph\">\n<p>This is content of section one</p>\n</div>"
                                              :parts []}))
 

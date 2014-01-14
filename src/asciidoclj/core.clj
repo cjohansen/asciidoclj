@@ -1,5 +1,9 @@
 (ns asciidoclj.core)
 
+(defn- keywordize-keys [m]
+  (zipmap (map keyword (keys m))
+          (vals m)))
+
 (defn- map-author [author]
   {:full-name (.getFullName author)
    :last-name (.getLastName author)
@@ -18,7 +22,8 @@
    :page-title (.getPageTitle header)
    :author (map-author (.getAuthor header))
    :authors (map map-author (.getAuthors header))
-   :revision-info (map-revision-info (.getRevisionInfo header))})
+   :revision-info (map-revision-info (.getRevisionInfo header))
+   :attributes (keywordize-keys (.getAttributes header))})
 
 (defn- map-content-part [part]
   {:id (.getId part)
@@ -27,7 +32,6 @@
    :style (.getStyle part)
    :role (.getRole part)
    :title (.getTitle part)
-   :attributes (.getAttributes part)
    :content (.getContent part)
    :parts (map map-content-part (.getParts part))})
 
