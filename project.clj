@@ -1,4 +1,4 @@
-(defproject asciidoclj "0.1.1"
+(defproject asciidoclj "0.2.0-SNAPSHOT"
   :description "A Clojure API to parse and render Asciidoc"
   :url "http://github.com/cjohansen/asciidoclj"
   :license {:name "Eclipse Public License"
