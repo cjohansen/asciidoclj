@@ -6,23 +6,19 @@ library wraps the
 intend to fully wrap all its APIs. The ambition is simply to provide a good
 Ascii doc library for Clojure.
 
+## Install
+
+Add `[asciidoclj "0.2.0"]` to `:dependencies` in your `project.clj`.
+
 ## Usage
 
-Currently, asciidoclj depends on a not yet released version of asciidoctorj. To
-use, first get asciidoctorj from source and install into your local repository:
-
-```sh
-git clone https://github.com/asciidoctor/asciidoctorj.git
-cd asciidoctorj
-mvn clean install
-```
-
-Then add asciidoclj to your project.clj. The only thing to consider for now is
-the parse function:
+The only thing to consider for now is the parse function:
 
 ```clj
 (asciidoclj.core/parse "= Sample Document")
 ```
+
+which will return a map of information about the document.
 
 ## License
 
