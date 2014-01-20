@@ -20,6 +20,8 @@ The only thing to consider for now is the parse function:
 
 which will return a map of information about the document.
 
+Look at [some examples](test/asciidoclj/core_test.clj).
+
 ## License
 
 Copyright © 2014 Christian Johansen
